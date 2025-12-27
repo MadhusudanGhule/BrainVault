@@ -1,0 +1,17 @@
+:root{
+  --bg:#939393;
+  --panel:#0b1220;
+  --text:#e6eef6;
+  --muted:#9aa6b2;
+}
+
+body{margin:0;font-family:Inter, Roboto, sans-serif;background:var(--bg);color:var(--text)}
+.header{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent)}
+.layout{display:flex;height:calc(100vh - 56px)}
+.sidebar{width:240px;padding:12px;background:var(--panel);overflow:auto}
+.main{flex:1;padding:12px}
+.editor-split{display:flex;height:100%}
+.editor{flex:1;padding:12px;background:#9bbad8;border:none;color:var(--text);font-family:monospace;resize:none}
+.preview{flex:1;padding:12px;background:#86c6f4;border-left:1px solid rgba(255,255,255,0.02);overflow:auto}
+.empty{padding:48px;color:var(--muted)}
+.saved{margin-top:12px;color:var(--muted);font-size:12px}
