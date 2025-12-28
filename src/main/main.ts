@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain, dialog } from 'electron'
 import path from 'path'
 import fs from 'fs'
+import { initAuth, registerUser, loginUser, getCurrentUser, logoutUser } from './auth'
 
 let mainWindow: BrowserWindow | null = null
 console.log('Loading URL:', process.env.VITE_DEV_SERVER_URL)
@@ -26,17 +27,33 @@ function createWindow() {
   }
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
+  await initAuth()                 // <- initialize user store
   createWindow()
 
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
 })
-
+ipcMain.handle('auth:register', async (_e, username: string, password: string) => {
+  try { return await registerUser(username, password) }
+  catch (err: any) { throw new Error(err?.message || String(err)) }
+})
+ipcMain.handle('auth:login', async (_e, username: string, password: string) => {
+  try { return await loginUser(username, password) }
+  catch (err: any) { throw new Error(err?.message || String(err)) }
+})
+ipcMain.handle('auth:get-current-user', async () => {
+  return await getCurrentUser()
+})
+ipcMain.handle('auth:logout', async () => {
+  return await logoutUser()
+})
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
+
+
 let currentFolderPath: string | null = null
 // IPC: open folder
 ipcMain.handle('dialog:openFolder', async () => {

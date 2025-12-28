@@ -38,8 +38,10 @@
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "bcryptjs": "^3.0.3",
     "monaco-editor": "^0.55.1",
     "node-fetch": "^3.3.2",
+    "pdf-parse": "^2.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.7",

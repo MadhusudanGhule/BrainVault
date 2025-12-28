@@ -5,6 +5,7 @@ import { FileNode } from './global'
 import Editor from './components/Editor'
 import FileTree from './components/FileTree'
 import ChatPanel from './components/ChatPanel'
+import { AuthForm } from './components/AuthForm'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -12,7 +13,7 @@ function App() {
   const currentFile = useAppSelector(s => s.files.currentFile)
   const folderPath = useAppSelector(s => s.files.folderPath)
   const [chatOpen, setChatOpen] = useState(false)
-
+  const [login, setLogin] = useState(false)
   async function openFolder() {
     const res = await window.api.openFolder()
     if (!res || !res.tree || !Array.isArray(res.tree)) return
@@ -58,8 +59,15 @@ function App() {
           >
             {chatOpen ? '💬 Close Chat' : '💬 Open Chat'}
           </button>
+          <button 
+            className="btn-secondary" 
+            onClick={() => setLogin(s => !s)}
+          >
+            {login ? '👤 Madan' : '👤 Login'}
+          </button>
         </div>
       </header>
+
       <div className="layout">
         <aside className="sidebar">
           <div className="sidebar-header">
@@ -80,6 +88,9 @@ function App() {
               <button className="btn-primary" onClick={openFolder}>
                 Open Folder
               </button>
+              <div className="auth-container">
+                <AuthForm />
+              </div>
             </div>
           )}
         </main>

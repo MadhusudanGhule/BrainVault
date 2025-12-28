@@ -16,13 +16,12 @@ async function extractPDFText(filePath: string): Promise<string | null> {
     // For now, return null - PDF text extraction requires pdf-parse or similar library
     // Users can install: npm install pdf-parse
     // Then uncomment and use:
-    /*
+    
     const pdfParse = require('pdf-parse')
     const dataBuffer = fs.readFileSync(filePath)
     const data = await pdfParse(dataBuffer)
     return data.text
-    */
-    return null
+    
   } catch (err) {
     console.error(`Error extracting PDF text from ${filePath}:`, err)
     return null
