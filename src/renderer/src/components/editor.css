@@ -1,0 +1,172 @@
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #ffffff;
+  border: none;
+}
+
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: #f0fff0;
+  border-bottom: 1px solid #e6ffe6;
+  font-size: 13px;
+}
+
+.editor-filename {
+  font-weight: 600;
+  color: #006600;
+  font-family: monospace;
+}
+
+.editor-saved-indicator {
+  color: #00aa00;
+  font-size: 12px;
+}
+
+.editor-file-type {
+  color: #006600;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.editor-wrapper {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.editor-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #006600;
+  font-size: 14px;
+}
+
+/* Monaco Editor Customization */
+.monaco-editor {
+  background: #ffffff !important;
+}
+
+.monaco-editor .margin {
+  background: #ffffff !important;
+}
+
+.monaco-editor .monaco-editor-background {
+  background: #ffffff !important;
+}
+
+/* Line numbers */
+.monaco-editor .line-numbers {
+  color: #00aa00 !important;
+}
+
+/* Selection */
+.monaco-editor .selected-text {
+  background: #e6ffe6 !important;
+}
+
+/* Cursor */
+.monaco-editor .cursors-layer .cursor {
+  background: #00aa00 !important;
+  border-color: #00aa00 !important;
+}
+
+/* Active line highlight */
+.monaco-editor .current-line {
+  background: #f0fff0 !important;
+}
+
+/* Scrollbar for editor */
+.monaco-scrollable-element > .scrollbar {
+  background: transparent !important;
+}
+
+.monaco-scrollable-element > .scrollbar > .slider {
+  background: rgba(0, 170, 0, 0.3) !important;
+}
+
+.monaco-scrollable-element > .scrollbar > .slider:hover {
+  background: rgba(0, 170, 0, 0.5) !important;
+}
+
+/* Bracket matching */
+.monaco-editor .bracket-match {
+  background: #ccffcc !important;
+  border: 1px solid #00aa00 !important;
+}
+
+/* Find match */
+.monaco-editor .findMatch {
+  background: #e6ffe6 !important;
+  border: 1px solid #00aa00 !important;
+}
+
+.monaco-editor .currentFindMatch {
+  background: #ccffcc !important;
+  border: 1px solid #006600 !important;
+}
+
+/* Word highlight */
+.monaco-editor .wordHighlight {
+  background: #e6ffe6 !important;
+}
+
+.monaco-editor .wordHighlightStrong {
+  background: #ccffcc !important;
+}
+
+/* Image Viewer */
+.image-viewer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: auto;
+  background: #f9f9f9;
+}
+
+.image-viewer img {
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* PDF Viewer */
+.pdf-viewer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  overflow: auto;
+  background: #f9f9f9;
+}
+
+.pdf-placeholder {
+  text-align: center;
+  max-width: 500px;
+  padding: 40px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.pdf-placeholder h3 {
+  margin: 0 0 8px 0;
+  color: #006600;
+  font-size: 20px;
+}
+
+.pdf-placeholder p {
+  margin: 8px 0;
+  color: #004d00;
+}

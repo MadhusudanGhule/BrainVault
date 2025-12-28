@@ -1,15 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-type FileItem = { name: string, path: string }
+import { FileNode } from '../../global'
 
 const filesSlice = createSlice({
   name: 'files',
-  initialState: { files: [] as FileItem[], currentFile: '' as string },
+  initialState: { 
+    fileTree: [] as FileNode[], 
+    currentFile: null as string | null,
+    folderPath: null as string | null
+  },
   reducers: {
-    setFiles(state, action: PayloadAction<FileItem[]>) { state.files = action.payload },
-    setCurrentFile(state, action: PayloadAction<string>) { state.currentFile = action.payload }
+    setFileTree(state, action: PayloadAction<{ tree: FileNode[], folderPath: string }>) { 
+      state.fileTree = action.payload.tree
+      state.folderPath = action.payload.folderPath
+    },
+    setCurrentFile(state, action: PayloadAction<string | null>) { 
+      state.currentFile = action.payload 
+    }
   }
 })
 
-export const { setFiles, setCurrentFile } = filesSlice.actions
+export const { setFileTree, setCurrentFile } = filesSlice.actions
 export default filesSlice.reducer

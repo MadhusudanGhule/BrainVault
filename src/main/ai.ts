@@ -1,17 +1,44 @@
 import fetch from 'node-fetch'
 
 export async function askLocalOllama(prompt: string, model = 'llama2') {
-  // Example: Ollama local REST API (adjust per your Ollama installation)
-  const url = 'http://127.0.0.1:11434/complete'
-  const body = { model, prompt }
-  const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
-  if (!res.ok) throw new Error(`Ollama error: ${res.status}`)
-  const json: any = await res.json()
-  // Response shape may vary - adapt to your Ollama version
-  // Accept either { text: string } or other shapes
-  if (json && typeof json.text === 'string') return json.text
-  if (json && typeof json?.result === 'string') return json.result
-  return JSON.stringify(json)
+  // Ollama local REST API - correct endpoint is /api/generate
+  const url = 'http://127.0.0.1:11434/api/generate'
+  const body = { 
+    model, 
+    prompt,
+    stream: false // Get complete response at once
+  }
+  
+  try {
+    const res = await fetch(url, { 
+      method: 'POST', 
+      headers: { 'Content-Type': 'application/json' }, 
+      body: JSON.stringify(body) 
+    })
+    
+    if (!res.ok) {
+      const errorText = await res.text()
+      throw new Error(`Ollama error: ${res.status} - ${errorText}`)
+    }
+    
+    const json: any = await res.json()
+    
+    // Ollama response format: { response: string, ... }
+    if (json && typeof json.response === 'string') {
+      return json.response
+    }
+    
+    // Fallback for other response formats
+    if (json && typeof json.text === 'string') return json.text
+    if (json && typeof json?.result === 'string') return json.result
+    
+    return JSON.stringify(json)
+  } catch (err: any) {
+    if (err.code === 'ECONNREFUSED') {
+      throw new Error('Cannot connect to Ollama. Make sure Ollama is running on http://127.0.0.1:11434')
+    }
+    throw err
+  }
 }
 
 export async function askOpenAI(prompt: string) {
