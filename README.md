@@ -12,7 +12,6 @@
 ## MVP Features
 - Open folder and list `.md` files
 - Markdown editor with split preview
-- Dark mode styling
 - Autosave to disk (debounced)
 - Basic AI IPC stub (`ai:ask`) — replace with Ollama / OpenAI in `src/main/main.ts`
 
